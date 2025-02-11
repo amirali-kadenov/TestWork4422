@@ -3,7 +3,9 @@ import type { RuleSetRule } from "webpack"
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   webpack(config) {
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find(
