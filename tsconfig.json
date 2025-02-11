@@ -17,12 +17,24 @@
     "plugins": [
       {
         "name": "next"
+      },
+      {
+        "name": "typescript-plugin-css-modules"
       }
     ],
     "paths": {
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "**/*.js", "stylelint.config.mjs"],
+  "include": [
+    "next-env.d.ts",
+    "css.d.ts",
+    "svgr.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "**/*.js",
+    "**/*.mjs"
+  ],
   "exclude": ["node_modules"]
 }
