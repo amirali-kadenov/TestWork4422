@@ -1,44 +1,22 @@
-// import { Suspense } from "react"
-// import CitySearch from "../components/CitySearch"
-// import CurrentWeather from "../components/CurrentWeather"
-// import { getWeather } from "../utils/api"
-import { CitySearch } from "@/widgets/city-search"
-import styles from "./home.module.scss"
+import { Suspense } from "react"
 
-type Props = {
-  searchParams: {
-    city?: string
-  }
-}
+import { CitySearch } from "@/features/city-search/ui/city-search"
+import { PageWrapper } from "@/shared/ui/page-wrapper"
+import { Header } from "@/widgets/header"
+import { WeatherInfo, WeatherInfoSkeleton } from "@/widgets/weather-info"
 
-export const Home = async ({} /* searchParams */ : Props) => {
-  // const city = await searchParams.city
-
-  // console.log({ city })
-
+export const Home = async () => {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
-        <h1 className={styles.title}>Weather App</h1>
-        <CitySearch />
-        {/* {city && (
-          <Suspense fallback={<p>Loading weather data...</p>}>
-            <WeatherInfo city={city} />
-          </Suspense>
-        )} */}
-      </main>
-    </div>
+    <>
+      <Header />
+
+      <PageWrapper className="flexCenter flex-column">
+        <CitySearch variant="md" />
+
+        <Suspense fallback={<WeatherInfoSkeleton />}>
+          <WeatherInfo />
+        </Suspense>
+      </PageWrapper>
+    </>
   )
 }
-
-// const WeatherInfo = async ({ city }: { city: string }) => {
-//   const weather = await getWeather(city)
-//   return (
-//     <CurrentWeather
-//       city={weather.name}
-//       temperature={weather.main.temp}
-//       description={weather.weather[0].description}
-//       icon={weather.weather[0].icon}
-//     />
-//   )
-// }

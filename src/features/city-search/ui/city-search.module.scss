@@ -1,0 +1,52 @@
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.sm {
+  display: block;
+}
+
+.md {
+  display: block;
+
+  input {
+    min-width: 400px;
+    padding: 16px 20px;
+    font-size: 1.2rem;
+  }
+}
+
+.input {
+  border-radius: 20px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  min-height: 200px;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.iconContainer {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  padding-right: 1rem;
+  pointer-events: none;
+  transform: translateY(-50%);
+}

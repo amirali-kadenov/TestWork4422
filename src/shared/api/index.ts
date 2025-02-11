@@ -1,17 +1,17 @@
 import axios from "axios"
 
-const API = process.env.OPENWEATHER_API
-const API_KEY = process.env.OPENWEATHER_API_KEY
+import type { InternalAxiosRequestConfig } from "axios"
 
-export const api = axios.create({
-  baseURL: API,
-})
-
-api.interceptors.request.use((config) => {
-  config.params = {
-    ...config.params,
-    appid: API_KEY,
-  }
+const injectApiKey = (config: InternalAxiosRequestConfig) => {
+  config.params.appid = process.env.OPENWEATHER_API_KEY
 
   return config
-})
+}
+
+export const createApi = (baseURL: string) => {
+  const api = axios.create({ baseURL })
+
+  api.interceptors.request.use(injectApiKey)
+
+  return api
+}

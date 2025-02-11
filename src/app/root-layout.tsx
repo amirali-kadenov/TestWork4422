@@ -1,8 +1,10 @@
 import "./styles/globals.scss"
-import { inter } from "./fonts/inter"
+import "bootstrap/dist/css/bootstrap.css"
+import clsx from "clsx"
 import { type Metadata } from "next"
+
 import type { ReactNode } from "react"
-import { BootstrapProvider } from "./providers/bootstrap-provider"
+import { inter } from "./fonts/inter"
 
 export const metadata: Metadata = {
   title: "Weather App",
@@ -16,8 +18,8 @@ type Props = {
 export const RootLayout = ({ children }: Props) => {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <BootstrapProvider>{children}</BootstrapProvider>
+      <body className={clsx(inter.className, "bg-dark text-light")}>
+        {children}
       </body>
     </html>
   )

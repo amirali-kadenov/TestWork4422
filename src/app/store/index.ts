@@ -22,6 +22,6 @@ export const useStore = create<Store>()(
     }),
     {
       name: "weather-store",
-    }
-  )
+    },
+  ),
 )
