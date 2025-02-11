@@ -23,90 +23,88 @@ export const ForecastDashboard = async ({ getForecast }: Props) => {
   const currentWeather = forecast.list[0]
 
   return (
-    <div className="p-4 bg-dark">
-      <Container>
-        <Card className="bg-dark text-light border-secondary">
-          <CardBody className="p-4">
-            <div className="mb-4 d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center">
-                <MapPin className="me-2"></MapPin>
-                <span>
-                  {forecast.city.name}, {forecast.city.country}
-                </span>
-              </div>
-
-              <AddToFavorites city={forecast.city.name} />
+    <Container>
+      <Card className="bg-dark text-light border-secondary">
+        <CardBody className="p-4">
+          <div className="mb-4 d-flex align-items-center justify-content-between">
+            <div className="d-flex align-items-center">
+              <MapPin className="me-2"></MapPin>
+              <span>
+                {forecast.city.name}, {forecast.city.country}
+              </span>
             </div>
 
-            <Row>
-              <Col xs={6}>
-                <h1 className="display-1 fw-bold mb-0">
-                  {Math.round(currentWeather.main.temp)}°
-                </h1>
-                <h2 className="h3 mb-3 text-warning">
-                  {currentWeather.weather[0].main}
-                </h2>
-                <p className="text-white-50">
-                  {currentWeather.weather[0].description}. The high will be{" "}
-                  {Math.round(currentWeather.main.temp_max)}°C.
-                </p>
-              </Col>
+            <AddToFavorites city={forecast.city.name} />
+          </div>
 
-              <Col xs={6}>
-                <Row className="g-3">
-                  <Col xs={6}>
-                    <WeatherUVIndex uvIndex={3} />
-                  </Col>
-                  <Col xs={6}>
-                    <WeatherWindInfo
-                      speed={currentWeather.wind.speed}
-                      deg={currentWeather.wind.deg}
-                    />
-                  </Col>
-                </Row>
-              </Col>
-            </Row>
+          <Row>
+            <Col md={6}>
+              <h1 className="display-1 fw-bold mb-0">
+                {Math.round(currentWeather.main.temp)}°
+              </h1>
+              <h2 className="h3 mb-3 text-warning">
+                {currentWeather.weather[0].main}
+              </h2>
+              <p className="text-white-50">
+                {currentWeather.weather[0].description}. The high will be{" "}
+                {Math.round(currentWeather.main.temp_max)}°C.
+              </p>
+            </Col>
 
-            <Row className="g-3 mt-3 mb-4">
-              <Col>
-                <WeatherCard
-                  title="FEELS LIKE"
-                  value={Math.round(currentWeather.main.feels_like)}
-                  description="Similar to the actual temperature"
-                />
-              </Col>
-              <Col>
-                <WeatherCard
-                  title="PRECIPITATION"
-                  value={`${Math.round(currentWeather.pop * 100)}%`}
-                  description="Chance of rain"
-                />
-              </Col>
-              <Col>
-                <WeatherCard
-                  title="VISIBILITY"
-                  value={`${currentWeather.visibility / 1000} km`}
-                />
-              </Col>
-              <Col>
-                <WeatherCard
-                  title="HUMIDITY"
-                  value={`${currentWeather.main.humidity}%`}
-                  description="Current humidity level"
-                />
-              </Col>
-            </Row>
-          </CardBody>
-        </Card>
+            <Col md={6}>
+              <Row className="g-3">
+                <Col xs={6}>
+                  <WeatherUVIndex uvIndex={3} />
+                </Col>
+                <Col xs={6}>
+                  <WeatherWindInfo
+                    speed={currentWeather.wind.speed}
+                    deg={currentWeather.wind.deg}
+                  />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
 
-        <h2 className="h2 mt-5">Forecast</h2>
+          <Row className="g-3 mt-3 mb-4">
+            <Col>
+              <WeatherCard
+                title="FEELS LIKE"
+                value={Math.round(currentWeather.main.feels_like)}
+                description="Similar to the actual temperature"
+              />
+            </Col>
+            <Col>
+              <WeatherCard
+                title="PRECIPITATION"
+                value={`${Math.round(currentWeather.pop * 100)}%`}
+                description="Chance of rain"
+              />
+            </Col>
+            <Col>
+              <WeatherCard
+                title="VISIBILITY"
+                value={`${currentWeather.visibility / 1000} km`}
+              />
+            </Col>
+            <Col>
+              <WeatherCard
+                title="HUMIDITY"
+                value={`${currentWeather.main.humidity}%`}
+                description="Current humidity level"
+              />
+            </Col>
+          </Row>
+        </CardBody>
+      </Card>
 
-        <div className="d-flex flex-column gap-1 mt-4">
-          <WeatherForecast forecast={first} />
-          <WeatherForecast forecast={second} />
-          <WeatherForecast forecast={third} />
-        </div>
-      </Container>
-    </div>
+      <h2 className="h2 mt-5">Forecast</h2>
+
+      <div className="d-flex flex-column gap-1 mt-4">
+        <WeatherForecast forecast={first} />
+        <WeatherForecast forecast={second} />
+        <WeatherForecast forecast={third} />
+      </div>
+    </Container>
   )
 }

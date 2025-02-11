@@ -5,6 +5,8 @@ import { Button } from "react-bootstrap"
 
 import { useStore } from "@/app/store"
 
+import styles from "./add-to-favorites.module.scss"
+
 type Props = {
   city: string
 }
@@ -17,14 +19,14 @@ export const AddToFavorites = ({ city }: Props) => {
   if (isFavorite)
     return (
       <Button variant="dark" onClick={() => removeFavorite(city)}>
-        Remove from favorites
+        <span className={styles.text}>Remove from favorites</span>
         <HeartOff className="ms-2"></HeartOff>
       </Button>
     )
 
   return (
     <Button variant="dark" onClick={() => addFavorite(city)}>
-      Add to favorites
+      <span className={styles.text}>Add to favorites</span>
       <Heart className="ms-2"></Heart>
     </Button>
   )

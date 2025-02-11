@@ -44,7 +44,7 @@ export const UseCurrentLocation = () => {
     <NavLink
       as="button"
       className={clsx(
-        "d-flex align-items-center gap-2 rounded-pill pe-4",
+        "d-flex align-items-center gap-2 rounded-pill",
         isActive && "text-warning",
       )}
       onClick={getLocation}

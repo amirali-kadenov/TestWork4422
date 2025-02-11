@@ -1,10 +1,7 @@
-.button {
-  color: red;
-  background-color: transparent;
-  border: none;
-  opacity: 0.9;
+.text {
+  display: none;
 
-  &:hover {
-    opacity: 1;
+  @media screen and (min-width: 480px) {
+    display: inline;
   }
 }
