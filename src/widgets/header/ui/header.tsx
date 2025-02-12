@@ -1,13 +1,12 @@
 import clsx from "clsx"
-import { Heart, CloudSun } from "lucide-react"
+import { CloudSun } from "lucide-react"
 import Link from "next/link"
 import type React from "react"
-import { Suspense, type ReactNode } from "react"
+import { type ReactNode } from "react"
 import {
   Navbar,
   Nav,
   Container,
-  NavLink,
   Col,
   NavbarBrand,
   NavbarToggle,
@@ -16,7 +15,8 @@ import {
 
 import { UseCurrentLocation } from "@/features/use-current-location"
 import { PATHS } from "@/shared/constants/paths"
-import style from "./header.module.scss"
+import { HeaderFavoriteButton } from "./header-favorite-button"
+import styles from "./header.module.scss"
 
 type Props = {
   children?: ReactNode
@@ -40,18 +40,13 @@ export const Header = ({ children }: Props) => {
 
           <NavbarToggle aria-controls="controls" />
 
-          <NavbarCollapse id="controls" className={clsx(style.navbar)}>
+          <NavbarCollapse id="controls" className={clsx(styles.navbar)}>
             {children}
 
             <Col xs={3} md={6}>
               <Nav className="justify-content-end flex-row d-flex">
-                <NavLink className="me-2" as={Link} href={PATHS.FAVORITES}>
-                  <Heart size={25} />
-                </NavLink>
-
-                <Suspense>
-                  <UseCurrentLocation />
-                </Suspense>
+                <HeaderFavoriteButton />
+                <UseCurrentLocation />
               </Nav>
             </Col>
           </NavbarCollapse>
