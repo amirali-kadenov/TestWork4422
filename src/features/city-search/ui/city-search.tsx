@@ -88,7 +88,7 @@ export const CitySearch = ({ className, inputClassName, variant }: Props) => {
             </Menu>
           )
         }}
-      ></Typeahead>
+      />
       <div className={clsx(styles.iconContainer, "text-secondary")}>
         {isLoading ? (
           <Spinner animation="border" size="sm" variant="dark" />

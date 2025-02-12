@@ -15,6 +15,8 @@ export const WeatherInfo = async () => {
 
   const weather = await weatherApi.getWeather(city)
 
+  if (!weather) return null
+
   return (
     <div className="p-4 rounded-4 bg-dark text-white w-100">
       <div className="d-flex mt-4 justify-content-center align-items-center gap-5">
