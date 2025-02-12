@@ -1,2 +1,1 @@
-export { APP_METADATA as metadata } from '@/app/metadata/app-metadata'
-
+export { BASE_METADATA as metadata } from "@/shared/metadata/base-metadata"
