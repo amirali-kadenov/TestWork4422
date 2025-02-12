@@ -9,7 +9,7 @@ import type React from "react"
 import { Spinner } from "react-bootstrap"
 import { Menu, MenuItem, Typeahead } from "react-bootstrap-typeahead"
 
-import { getCitySuggestions } from "@/entities/geolocation"
+import { getCities } from "@/entities/geolocation"
 import type { CitySuggestion } from "@/entities/weather"
 import { PATHS } from "@/shared/constants/paths"
 
@@ -18,10 +18,10 @@ import styles from "./city-search.module.scss"
 type Props = {
   className?: string
   inputClassName?: string
-  variant: Variants
+  variant?: Variants
 }
 
-type Variants = "sm" | "md"
+type Variants = "md"
 
 export const CitySearch = ({ className, inputClassName, variant }: Props) => {
   const router = useRouter()
@@ -33,7 +33,7 @@ export const CitySearch = ({ className, inputClassName, variant }: Props) => {
     setIsLoading(true)
 
     try {
-      const citySuggestions = await getCitySuggestions(query)
+      const citySuggestions = await getCities(query)
 
       if (citySuggestions) {
         setOptions(citySuggestions)
@@ -44,7 +44,13 @@ export const CitySearch = ({ className, inputClassName, variant }: Props) => {
   }
 
   return (
-    <div className={clsx("position-relative", styles[variant], className)}>
+    <div
+      className={clsx(
+        "position-relative",
+        variant && styles[variant],
+        className,
+      )}
+    >
       <Typeahead
         id="autocomplete-search"
         labelKey="name"
@@ -62,7 +68,7 @@ export const CitySearch = ({ className, inputClassName, variant }: Props) => {
                 const { name, country } = option as CitySuggestion
 
                 const handleClick = () => {
-                  router.push(PATHS.FORECAST.get(encodeURIComponent(name)))
+                  router.push(PATHS.FORECAST.get(name))
                   state.hideMenu()
                 }
 

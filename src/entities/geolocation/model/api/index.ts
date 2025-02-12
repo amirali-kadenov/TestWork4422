@@ -1,20 +1,29 @@
-import { createApi } from "@/shared/api"
+import { Api } from "@/shared/api"
 
 import type { CitySuggestion } from "./types"
 
+const LIMIT = 20
 const BASE_URL = process.env.OPENWEATHER_API + "/geo/1.0/"
 
-const api = createApi(BASE_URL)
+const api = new Api(BASE_URL)
 
 export const geolocationApi = {
-  async getCitySuggestions(query: string) {
-    const response = await api.get<CitySuggestion[]>(`direct`, {
+  async getCities(query: string) {
+    return await api.get<CitySuggestion[]>(`direct`, {
       params: {
         q: query,
-        limit: 20,
+        limit: LIMIT,
       },
     })
+  },
 
-    return response.data
+  async getCitiesByCoordinates(lat: string, lon: string) {
+    return await api.get<CitySuggestion[]>(`reverse`, {
+      params: {
+        lat,
+        lon,
+        limit: LIMIT,
+      },
+    })
   },
 }

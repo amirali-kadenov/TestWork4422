@@ -2,9 +2,9 @@
 
 import { geolocationApi } from "@/entities/geolocation/model/api"
 
-export const getCitySuggestions = async (query: string) => {
+export const getCitiesByCoordinates = async (lat: string, lon: string) => {
   try {
-    const response = await geolocationApi.getCitySuggestions(query)
+    const response = await geolocationApi.getCitiesByCoordinates(lat, lon)
 
     return response
   } catch (error) {

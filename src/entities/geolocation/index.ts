@@ -1,1 +1,2 @@
-export { getCitySuggestions } from "./model/actions/get-city-suggestions"
+export { getCities } from "./model/actions/get-cities"
+export { getCitiesByCoordinates } from "./model/actions/get-cities-by-coordinates"
