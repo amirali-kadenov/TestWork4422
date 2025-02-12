@@ -6,7 +6,6 @@ import type {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios"
-import { notFound } from "next/navigation"
 
 export class Api {
   private readonly _api: AxiosInstance
@@ -30,7 +29,8 @@ export class Api {
       return response.data
     } catch (e) {
       console.warn(e)
-      notFound()
+
+      return null
     }
   }
 
