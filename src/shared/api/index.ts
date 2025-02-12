@@ -1,17 +1,42 @@
 import axios from "axios"
 
-import type { InternalAxiosRequestConfig } from "axios"
+import type {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios"
+import { notFound } from "next/navigation"
 
-const injectApiKey = (config: InternalAxiosRequestConfig) => {
-  config.params.appid = process.env.OPENWEATHER_API_KEY
+export class Api {
+  private readonly _api: AxiosInstance
 
-  return config
-}
+  constructor(private readonly baseUrl: string) {
+    this._api = axios.create({
+      baseURL: this.baseUrl,
+      withCredentials: true,
+    })
 
-export const createApi = (baseURL: string) => {
-  const api = axios.create({ baseURL })
+    this._api.interceptors.request.use(this.injectApiKey)
+  }
 
-  api.interceptors.request.use(injectApiKey)
+  get = async <T = unknown, D = unknown>(
+    url: string,
+    config?: AxiosRequestConfig<D>,
+  ) => {
+    try {
+      const response = await this._api.get<T, AxiosResponse<T>, D>(url, config)
 
-  return api
+      return response.data
+    } catch (e) {
+      console.warn(e)
+      notFound()
+    }
+  }
+
+  injectApiKey(config: InternalAxiosRequestConfig) {
+    config.params.appid = process.env.OPENWEATHER_API_KEY
+
+    return config
+  }
 }
