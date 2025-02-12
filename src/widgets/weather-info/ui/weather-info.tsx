@@ -1,21 +1,22 @@
 import { Droplet, Wind } from "lucide-react"
+import { cookies } from "next/headers"
 import Link from "next/link"
 import React from "react"
-import { Card } from "react-bootstrap"
-
-import { WeatherIcon } from "@/entities/weather"
-import { weatherApi } from "@/entities/weather/model/api"
+import { WeatherIcon, weatherApi } from "@/entities/weather"
 import { getCity } from "@/shared/api/get-city"
+import { KEYS } from "@/shared/constants/keys"
 import { PATHS } from "@/shared/constants/paths"
 
 export const WeatherInfo = async () => {
-  const city = await getCity()
+  const cookiesStore = await cookies()
+
+  const cookieCity = cookiesStore.get(KEYS.CITY)?.value
+  const city = cookieCity ?? (await getCity())
+
   const weather = await weatherApi.getWeather(city)
 
-  const forecastUrl = encodeURIComponent(weather.name)
-
   return (
-    <Card className="p-4 rounded-4 bg-dark text-white w-100">
+    <div className="p-4 rounded-4 bg-dark text-white w-100">
       <div className="d-flex mt-4 justify-content-center align-items-center gap-5">
         <WeatherIcon weather={weather} size={220} />
 
@@ -41,13 +42,13 @@ export const WeatherInfo = async () => {
           </div>
 
           <Link
-            href={PATHS.FORECAST.get(forecastUrl)}
+            href={PATHS.FORECAST.get(weather.name)}
             className="text-decoration-underline text-warning mt-3 d-block"
           >
             Show More +
           </Link>
         </div>
       </div>
-    </Card>
+    </div>
   )
 }

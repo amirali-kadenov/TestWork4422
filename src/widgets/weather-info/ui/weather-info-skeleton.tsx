@@ -10,8 +10,8 @@ export const WeatherInfoSkeleton: React.FC = () => {
   return (
     <Container className="mt-5">
       <Card className="p-4 bg-dark rounded-4 text-white w-100 ">
-        <Row className="mb-4">
-          <Col className="d-flex justify-content-end pe-5">
+        <Row className="mb-4 flex-nowrap">
+          <Col xs={6} className="d-flex justify-content-end pe-md-5">
             <Placeholder as={Card.Text} animation="glow">
               <Placeholder
                 xs={8}
@@ -20,16 +20,17 @@ export const WeatherInfoSkeleton: React.FC = () => {
               />
             </Placeholder>
           </Col>
-          <Col className={styles.content}>
+          <Col xs={6} className={styles.content}>
             <Placeholder
               animation="glow"
-              className="d-flex mt-5 flex-column justify-content-center"
+              className="d-flex flex-column justify-content-center"
             >
+              <Placeholder xs={4} size="lg" className="mb-3" />
               <Placeholder xs={8} size="lg" className="mb-3" />
+              <Placeholder xs={10} size="lg" className="mb-3" />
               <Placeholder xs={8} size="lg" className="mb-3" />
+              <Placeholder xs={4} size="lg" className="mb-3" />
               <Placeholder xs={6} size="lg" className="mb-3" />
-              <Placeholder xs={6} size="lg" className="mb-3" />
-              <Placeholder xs={2} />
             </Placeholder>
           </Col>
         </Row>
