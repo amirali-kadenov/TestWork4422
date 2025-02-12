@@ -11,10 +11,16 @@ export const getOrigin = async () => {
   return `http://${host}`
 }
 
-export const getCity = async () => {
+type City = {
+  city: string
+}
+
+export const getCity = async (): Promise<string> => {
   const origin = await getOrigin()
 
-  const response = await axios.get(origin + CITY_ENDPOINT)
+  const response = await axios.get<City>(origin + CITY_ENDPOINT, {
+    withCredentials: true,
+  })
 
   return response.data.city ?? DEFAULT_CITY
 }

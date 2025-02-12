@@ -2,7 +2,7 @@ import clsx from "clsx"
 import { CloudSun } from "lucide-react"
 import Link from "next/link"
 import type React from "react"
-import { type ReactNode } from "react"
+import { Suspense, type ReactNode } from "react"
 import {
   Navbar,
   Nav,
@@ -46,7 +46,9 @@ export const Header = ({ children }: Props) => {
             <Col xs={3} md={6}>
               <Nav className="justify-content-end flex-row d-flex">
                 <HeaderFavoriteButton />
-                <UseCurrentLocation />
+                <Suspense>
+                  <UseCurrentLocation />
+                </Suspense>
               </Nav>
             </Col>
           </NavbarCollapse>

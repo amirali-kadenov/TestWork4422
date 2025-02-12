@@ -1,10 +1,11 @@
 export const PATHS = {
   HOME: "/",
   FORECAST: {
-    get: (city: string) => `/forecast/${city}`,
+    get: (city: string) => `/forecast/${encodeURIComponent(city)}`,
+
     BY_COORDINATES: {
-      get: (lon: string, lat: string) => {
-        const params = new URLSearchParams({ lon, lat, setCookie: "true" })
+      get: (lat: string, lon: string) => {
+        const params = new URLSearchParams({ lat, lon })
 
         return `/forecast/by-coordinates?${params}`
       },

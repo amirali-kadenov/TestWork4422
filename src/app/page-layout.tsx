@@ -16,7 +16,7 @@ export const PageLayout = ({ children }: Props) => {
     <>
       <Header>
         <Col>
-          <CitySearch variant="sm" />
+          <CitySearch />
         </Col>
       </Header>
 

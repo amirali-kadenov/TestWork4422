@@ -6,32 +6,24 @@ import {
   ForecastDashboard,
   ForecastDashboardSkeleton,
 } from "@/widgets/forecast-dashboard"
-// import { setCityCookie } from "./lib/set-city-cookie"
 
-type Props = {
+export type ForecastByCoordinatesParams = {
   searchParams: Promise<{
     lon?: string
     lat?: string
-    setCookie?: boolean
   }>
 }
 
-export const ForecastByCoordinatesPage = async (props: Props) => {
-  const { lat, lon /* setCookie */ } = await props.searchParams
+export const ForecastByCoordinatesPage = async (
+  props: ForecastByCoordinatesParams,
+) => {
+  const { lat, lon } = await props.searchParams
 
   if (!lat || !lon) {
     notFound()
   }
 
-  const getForecast = async () => {
-    const forecast = await weatherApi.getForecastByCoordinates(lat, lon)
-
-    // if (setCookie) {
-    //   setCityCookie(forecast.city.name)
-    // }
-
-    return forecast
-  }
+  const getForecast = () => weatherApi.getForecastByCoordinates(lat, lon)
 
   return (
     <Suspense fallback={<ForecastDashboardSkeleton />}>

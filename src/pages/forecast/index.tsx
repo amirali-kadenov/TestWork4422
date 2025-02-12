@@ -6,13 +6,13 @@ import {
   ForecastDashboardSkeleton,
 } from "@/widgets/forecast-dashboard"
 
-type Props = {
+export type ForecastPageProps = {
   params: Promise<{
     city: string
   }>
 }
 
-export const ForecastPage = async (props: Props) => {
+export const ForecastPage = async (props: ForecastPageProps) => {
   const params = await props.params
 
   const city = decodeURIComponent(params.city)
@@ -21,7 +21,7 @@ export const ForecastPage = async (props: Props) => {
 
   return (
     <Suspense fallback={<ForecastDashboardSkeleton />}>
-      <ForecastDashboard getForecast={getForecast}></ForecastDashboard>
+      <ForecastDashboard getForecast={getForecast} />
     </Suspense>
   )
 }

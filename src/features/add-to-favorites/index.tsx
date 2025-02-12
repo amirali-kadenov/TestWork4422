@@ -20,14 +20,14 @@ export const AddToFavorites = ({ city }: Props) => {
     return (
       <Button variant="dark" onClick={() => removeFavorite(city)}>
         <span className={styles.text}>Remove from favorites</span>
-        <HeartOff className="ms-2"></HeartOff>
+        <HeartOff size={20} className="ms-2"></HeartOff>
       </Button>
     )
 
   return (
     <Button variant="dark" onClick={() => addFavorite(city)}>
       <span className={styles.text}>Add to favorites</span>
-      <Heart className="ms-2"></Heart>
+      <Heart size={20} className="ms-2"></Heart>
     </Button>
   )
 }

@@ -1,5 +1,4 @@
 import { Suspense } from "react"
-
 import { CitySearch } from "@/features/city-search/ui/city-search"
 import { PageWrapper } from "@/shared/ui/page-wrapper"
 import { Header } from "@/widgets/header"

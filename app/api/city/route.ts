@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server"
-
 import { DEFAULT_CITY, IP_API_URL, LOCALHOST_IP } from "./lib/constants"
 import { getIp } from "./lib/get-ip"
 
@@ -10,9 +9,13 @@ export async function GET() {
   try {
     const ip = await getIp()
 
-    const url = ip === LOCALHOST_IP ? IP_API_URL : IP_API_URL + ip
+    let ipApiUrl = IP_API_URL
 
-    const response = await fetch(`${url}/json/`)
+    if (ip !== LOCALHOST_IP) {
+      ipApiUrl += ip
+    }
+
+    const response = await fetch(`${ipApiUrl}/json/`)
 
     const json = (await response.json()) as IpApiResponse
 
