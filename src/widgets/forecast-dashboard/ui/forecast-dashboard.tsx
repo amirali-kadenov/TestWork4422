@@ -1,4 +1,5 @@
 import { MapPin } from "lucide-react"
+import { notFound } from "next/navigation"
 import { Card, Container, Row, Col, CardBody } from "react-bootstrap"
 
 import type { Forecast } from "@/entities/weather"
@@ -12,11 +13,13 @@ import { AddToFavorites } from "@/features/add-to-favorites"
 import { splitForecastByDays } from "../lib/split-forecast-by-days"
 
 type Props = {
-  getForecast: () => Promise<Forecast>
+  getForecast: () => Promise<Forecast | null>
 }
 
 export const ForecastDashboard = async ({ getForecast }: Props) => {
   const forecast = await getForecast()
+
+  if (!forecast) return notFound()
 
   const { first, second, third } = splitForecastByDays(forecast)
 

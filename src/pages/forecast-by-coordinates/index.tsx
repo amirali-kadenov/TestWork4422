@@ -19,15 +19,13 @@ export const ForecastByCoordinatesPage = async (
 ) => {
   const { lat, lon } = await props.searchParams
 
-  if (!lat || !lon) {
-    notFound()
-  }
+  if (!lat || !lon) notFound()
 
   const getForecast = () => weatherApi.getForecastByCoordinates(lat, lon)
 
   return (
     <Suspense fallback={<ForecastDashboardSkeleton />}>
-      <ForecastDashboard getForecast={getForecast}></ForecastDashboard>
+      <ForecastDashboard getForecast={getForecast} />
     </Suspense>
   )
 }
