@@ -1,8 +1,7 @@
-import { Suspense } from "react"
 import { CitySearch } from "@/features/city-search/ui/city-search"
 import { PageWrapper } from "@/shared/ui/page-wrapper"
 import { Header } from "@/widgets/header"
-import { WeatherInfo, WeatherInfoSkeleton } from "@/widgets/weather-info"
+import { WeatherInfo } from "@/widgets/weather-info"
 
 export const Home = async () => {
   return (
@@ -12,9 +11,7 @@ export const Home = async () => {
       <PageWrapper withCenteredContent className="flex-column">
         <CitySearch variant="md" />
 
-        <Suspense fallback={<WeatherInfoSkeleton />}>
-          <WeatherInfo />
-        </Suspense>
+        <WeatherInfo />
       </PageWrapper>
     </>
   )

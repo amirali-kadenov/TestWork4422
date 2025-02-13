@@ -1,14 +1,17 @@
+"use client"
+
 import { Droplet, Wind } from "lucide-react"
 import Link from "next/link"
 import React from "react"
-import { WeatherIcon, weatherApi } from "@/entities/weather"
+import { WeatherIcon } from "@/entities/weather"
 import { PATHS } from "@/shared/constants/paths"
-import { getCity } from "../lib/get-city"
+import { WeatherInfoSkeleton } from "./weather-info-skeleton"
+import { useWeather } from "../model/use-weather"
 
-export const WeatherInfo = async () => {
-  const city = await getCity()
+export const WeatherInfo = () => {
+  const { data: weather, isLoading } = useWeather()
 
-  const weather = await weatherApi.getWeather(city)
+  if (isLoading) return <WeatherInfoSkeleton />
 
   if (!weather) return null
 

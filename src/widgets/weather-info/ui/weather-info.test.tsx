@@ -11,7 +11,7 @@ jest.mock("@/entities/weather", () => ({
   WeatherIcon: jest.fn(),
 }))
 
-jest.mock("../lib/get-city.ts", () => ({
+jest.mock("../model/get-city.ts", () => ({
   getCity: jest.fn().mockResolvedValue("London"),
 }))
 
