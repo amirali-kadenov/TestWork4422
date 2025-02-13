@@ -17,14 +17,12 @@ import { PATHS } from "@/shared/constants/paths"
 import styles from "./city-search.module.scss"
 
 type Props = {
-  className?: string
-  inputClassName?: string
   variant?: Variants
 }
 
 type Variants = "md"
 
-export const CitySearch = ({ className, inputClassName, variant }: Props) => {
+export const CitySearch = ({ variant }: Props) => {
   const router = useRouter()
 
   const [options, setOptions] = useState<CitySuggestion[]>([])
@@ -47,13 +45,7 @@ export const CitySearch = ({ className, inputClassName, variant }: Props) => {
   const debouncedFetchCities = useDebouncedCallback(fetchCities, 300)
 
   return (
-    <div
-      className={clsx(
-        "position-relative",
-        variant && styles[variant],
-        className,
-      )}
-    >
+    <div className={clsx("position-relative", variant && styles[variant])}>
       <Typeahead
         id="autocomplete-search"
         labelKey="name"
@@ -61,7 +53,7 @@ export const CitySearch = ({ className, inputClassName, variant }: Props) => {
         onInputChange={debouncedFetchCities}
         options={options}
         isLoading={isLoading}
-        inputProps={{ className: clsx(styles.input, inputClassName) }}
+        inputProps={{ className: styles.input }}
         renderMenu={(options, _, state) => {
           if (!options.length) return null
 
