@@ -19,6 +19,8 @@ export async function GET() {
 
     const json = (await response.json()) as IpApiResponse
 
+    console.log("get ip result", { ip, json })
+
     if (json.error) {
       console.error("Failed to get location", json)
 
