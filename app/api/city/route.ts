@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server"
-import { DEFAULT_CITY, IP_API_URL, LOCALHOST_IP } from "./lib/constants"
+import { IP_API_URL, LOCALHOST_IP } from "./lib/constants"
 import { getIp } from "./lib/get-ip"
 
 import type { IpApiResponse } from "./lib/types"
@@ -22,13 +22,13 @@ export async function GET() {
     if (json.error) {
       console.error("Failed to get location", json)
 
-      return NextResponse.json({ city: DEFAULT_CITY })
+      return NextResponse.json({ city: null })
     }
 
     return NextResponse.json({ city: json.city })
   } catch (error) {
     console.error("Failed to get location", error)
 
-    return NextResponse.json({ data: DEFAULT_CITY })
+    return NextResponse.json({ data: null })
   }
 }
