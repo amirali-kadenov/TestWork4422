@@ -3,17 +3,17 @@
 import clsx from "clsx"
 import Cookies from "js-cookie"
 import { MapPin } from "lucide-react"
-import { usePathname, useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 import { NavLink } from "react-bootstrap"
 
 import { getCitiesByCoordinates } from "@/entities/geolocation"
 import { KEYS } from "@/shared/constants/keys"
 import { PATHS } from "@/shared/constants/paths"
+import { useIsActive } from "./lib/use-is-active"
 
 export const UseCurrentLocation = () => {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const pathname = usePathname()
+  const isActive = useIsActive()
 
   const getLocation = () => {
     if (!navigator.geolocation) return
@@ -40,16 +40,6 @@ export const UseCurrentLocation = () => {
       router.push(path)
     })
   }
-
-  const lat = searchParams?.get(KEYS.LAT)
-  const lon = searchParams?.get(KEYS.LON)
-  const city = Cookies.get(KEYS.CITY)
-
-  const isLatitudeMatch = lat && lat === localStorage.getItem(KEYS.LAT)
-  const isLongitudeMatch = lon && lon === localStorage.getItem(KEYS.LON)
-  const isCityMatch = city && pathname === PATHS.FORECAST.get(city)
-
-  const isActive = (isLatitudeMatch && isLongitudeMatch) || isCityMatch
 
   return (
     <NavLink
