@@ -5,6 +5,7 @@ import { type Metadata } from "next"
 
 import type { ReactNode } from "react"
 import { inter } from "./fonts/inter"
+import { SWRProvider } from "./providers/swr-provider"
 
 export const metadata: Metadata = {
   title: "Weather App",
@@ -19,7 +20,7 @@ export const RootLayout = ({ children }: Props) => {
   return (
     <html lang="en">
       <body className={clsx(inter.className, "bg-dark text-light")}>
-        {children}
+        <SWRProvider>{children}</SWRProvider>
       </body>
     </html>
   )
