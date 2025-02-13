@@ -56,3 +56,6 @@ The project follows [Feature-Sliced Design](https://feature-sliced.design/) arch
 - npm run build - Build for production
 - npm run start - Start production server
 - npm run lint - Run ESLint
+- npm test - Run test suite
+- npm run test:watch - Run tests in watch mode
+- npm run test:coverage - Generate test coverage report
