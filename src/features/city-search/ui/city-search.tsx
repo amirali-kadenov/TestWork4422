@@ -9,6 +9,7 @@ import type React from "react"
 import { Spinner } from "react-bootstrap"
 import { Menu, MenuItem, Typeahead } from "react-bootstrap-typeahead"
 
+import { useDebouncedCallback } from "use-debounce"
 import { getCities } from "@/entities/geolocation"
 import type { CitySuggestion } from "@/entities/weather"
 import { PATHS } from "@/shared/constants/paths"
@@ -43,6 +44,8 @@ export const CitySearch = ({ className, inputClassName, variant }: Props) => {
     }
   }
 
+  const debouncedFetchCities = useDebouncedCallback(fetchCities, 300)
+
   return (
     <div
       className={clsx(
@@ -55,7 +58,7 @@ export const CitySearch = ({ className, inputClassName, variant }: Props) => {
         id="autocomplete-search"
         labelKey="name"
         placeholder="Search city"
-        onInputChange={fetchCities}
+        onInputChange={debouncedFetchCities}
         options={options}
         isLoading={isLoading}
         inputProps={{ className: clsx(styles.input, inputClassName) }}
