@@ -1,17 +1,12 @@
 import { Droplet, Wind } from "lucide-react"
-import { cookies } from "next/headers"
 import Link from "next/link"
 import React from "react"
 import { WeatherIcon, weatherApi } from "@/entities/weather"
-import { getCity } from "@/shared/api/get-city"
-import { KEYS } from "@/shared/constants/keys"
 import { PATHS } from "@/shared/constants/paths"
+import { getCity } from "../lib/get-city"
 
 export const WeatherInfo = async () => {
-  const cookiesStore = await cookies()
-
-  const cookieCity = cookiesStore.get(KEYS.CITY)?.value
-  const city = cookieCity ?? (await getCity())
+  const city = await getCity()
 
   const weather = await weatherApi.getWeather(city)
 

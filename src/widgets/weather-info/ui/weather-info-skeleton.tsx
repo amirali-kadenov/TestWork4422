@@ -1,12 +1,11 @@
 "use client"
 
 import clsx from "clsx"
-import type React from "react"
 import { Card, Col, Container, Placeholder, Row } from "react-bootstrap"
 
 import styles from "./weather-info.module.scss"
 
-export const WeatherInfoSkeleton: React.FC = () => {
+export const WeatherInfoSkeleton = () => {
   return (
     <Container className="mt-5">
       <Card className="p-4 bg-dark rounded-4 text-white w-100 ">
