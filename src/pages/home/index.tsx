@@ -9,7 +9,7 @@ export const Home = async () => {
     <>
       <Header />
 
-      <PageWrapper className="flexCenter flex-column">
+      <PageWrapper withCenteredContent className="flex-column">
         <CitySearch variant="md" />
 
         <Suspense fallback={<WeatherInfoSkeleton />}>
