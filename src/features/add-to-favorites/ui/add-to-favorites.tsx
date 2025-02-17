@@ -1,5 +1,6 @@
 "use client"
 
+import clsx from "clsx"
 import { Heart, HeartOff } from "lucide-react"
 import { Button } from "react-bootstrap"
 
@@ -19,15 +20,15 @@ export const AddToFavorites = ({ city }: Props) => {
   if (isFavorite)
     return (
       <Button variant="dark" onClick={() => removeFavorite(city)}>
-        <span className={styles.text}>Remove from favorites</span>
-        <HeartOff size={20} className="ms-2"></HeartOff>
+        <span className={clsx(styles.text, "me-2")}>Remove from favorites</span>
+        <HeartOff size={20}></HeartOff>
       </Button>
     )
 
   return (
     <Button variant="dark" onClick={() => addFavorite(city)}>
-      <span className={styles.text}>Add to favorites</span>
-      <Heart size={20} className="ms-2"></Heart>
+      <span className={clsx(styles.text, "me-2")}>Add to favorites</span>
+      <Heart size={20}></Heart>
     </Button>
   )
 }

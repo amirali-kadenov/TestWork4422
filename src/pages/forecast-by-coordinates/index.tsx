@@ -1,11 +1,7 @@
 import { notFound } from "next/navigation"
-import { Suspense } from "react"
 
 import { weatherApi } from "@/entities/weather"
-import {
-  ForecastDashboard,
-  ForecastDashboardSkeleton,
-} from "@/widgets/forecast-dashboard"
+import { ForecastDashboard } from "@/widgets/forecast-dashboard"
 
 export type ForecastByCoordinatesParams = {
   searchParams: Promise<{
@@ -23,9 +19,5 @@ export const ForecastByCoordinatesPage = async (
 
   const getForecast = () => weatherApi.getForecastByCoordinates(lat, lon)
 
-  return (
-    <Suspense fallback={<ForecastDashboardSkeleton />}>
-      <ForecastDashboard getForecast={getForecast} />
-    </Suspense>
-  )
+  return <ForecastDashboard getForecast={getForecast} />
 }

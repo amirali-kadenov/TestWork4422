@@ -3,7 +3,7 @@ import clsx from "clsx"
 import type { ReactNode } from "react"
 import styles from "./page-wrapper.module.scss"
 
-type Props = {
+export type PageWrapperProps = {
   className?: string
   withCenteredContent?: boolean
   children: ReactNode
@@ -13,7 +13,7 @@ export const PageWrapper = ({
   className,
   withCenteredContent,
   children,
-}: Props) => {
+}: PageWrapperProps) => {
   return (
     <main
       className={clsx(
